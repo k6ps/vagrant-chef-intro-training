@@ -3,5 +3,5 @@
   <role rolename="manager-gui"/>
   <role rolename="manager-status"/>
   <role rolename="manager-script"/>
-  <user username="admin" password="password" roles="manager-gui,manager-script,manager-status"/>
+  <user username="<%= node['tomcat']['admin_username'] %>" password="<%= node['tomcat']['admin_password'] %>" roles="manager-gui,manager-script,manager-status"/>
 </tomcat-users>

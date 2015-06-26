@@ -1,3 +1,5 @@
+tomcat_users_config_file = "#{node['tomcat']['config_folder']}/tomcat-users.xml"
+
 package "tomcat7" do
     action :install
 end
@@ -7,9 +9,9 @@ package "tomcat7-admin" do
 end
 
 service "tomcat7" do
-  subscribes :restart, "template[/etc/tomcat7/tomcat-users.xml]", :immediately
+  subscribes :restart, "template[#{tomcat_users_config_file}]", :immediately
 end
 
-template "/etc/tomcat7/tomcat-users.xml" do
+template tomcat_users_config_file do
     source "tomcat-users.xml.erb"
 end
