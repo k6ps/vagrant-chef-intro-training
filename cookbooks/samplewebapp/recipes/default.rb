@@ -8,6 +8,8 @@ package "tomcat7-admin" do
     action :install
 end
 
+include_recipe 'java'
+
 service "tomcat7" do
   subscribes :restart, "template[#{tomcat_users_config_file}]", :immediately
 end
