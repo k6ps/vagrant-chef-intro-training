@@ -1,4 +1,5 @@
 require  'chefspec'
+require 'chefspec/berkshelf'
 
 test_tomcat_conf_folder = '/some/test/folder'
 test_tomcat_admin_username = 'tester'
@@ -36,6 +37,10 @@ describe 'samplewebapp::default' do
     
     it 'restarts application server immediately when tomcat-users.xml is modified' do
         expect(chef_run.template(test_tomcat_users_conf_file)).to notify('service[tomcat7]').to(:restart).immediately
+    end
+
+    it 'runs java installation recipe' do
+        expect(chef_run).to include_recipe('java::default')
     end
 
 end
