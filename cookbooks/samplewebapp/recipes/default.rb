@@ -1,5 +1,11 @@
 tomcat_users_config_file = "#{node['tomcat']['config_folder']}/tomcat-users.xml"
 
+bash 'Update Ubuntu packages info' do
+  code <<-EOH
+    sudo apt-get update -y
+  EOH
+end
+
 package "tomcat7" do
     action :install
 end
