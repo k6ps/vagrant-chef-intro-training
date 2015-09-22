@@ -9,12 +9,13 @@ platforms:
   - name: ubuntu-14.04
     driver_config:
       box: ubuntu/trusty32
-    driver:
-      customize:
-        memory: 512
 
 suites:
-  - name: default
+  - name: app
     run_list: [
       "recipe[samplewebapp]"
+    ]
+  - name: service
+    run_list: [
+      "recipe[samplewebapp::service]"
     ]
